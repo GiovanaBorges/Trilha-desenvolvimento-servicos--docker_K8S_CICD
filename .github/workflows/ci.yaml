@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: ["master"]
+
+  pull_request:
+    branches: ["master"]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+
+      - name: Inicia banco
+        working-directory: ./CI-CD
+        run: docker compose up -d postgres
+
+      - name: Build
+        working-directory: ./CI-CD
+        run: go build -v ./...
+
+      - name: Lint
+        run: |
+          docker run --rm \
+            -v ${{ github.workspace }}/CI-CD:/app \
+            -w /app \
+            golangci/golangci-lint/golangci-lint:v1.59 \
+            golangci-lint run
+
+      - name: Rodar testes
+        working-directory: ./CI-CD
+        run: go test -v ./...
