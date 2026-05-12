@@ -1,62 +1,148 @@
-# ☁️ Trilha DevOps , Containers e Pipelines
+# ☁️ Trilha DevOps, Containers, Kubernetes e CI/CD
 
-Repositório com projetos, anotações e laboratórios práticos desenvolvidos durante estudos na trilha "Desenvolvimento de Serviços - Containers, kubernetes e pipelines" da Alura.
+Repositório com projetos, laboratórios práticos e estudos desenvolvidos durante a trilha de **Containers, Kubernetes e Pipelines** da Alura.
 
-Os projetos abordam desde a criação e gerenciamento de containers com Docker até automação de pipelines CI/CD com GitHub Actions e orquestração de aplicações utilizando Kubernetes ☸️🐳
+Ao longo dos projetos foram praticados conceitos fundamentais de DevOps moderno, desde a criação de containers com Docker até automação de pipelines CI/CD e orquestração de aplicações utilizando Kubernetes ☸️🐳
+
+O repositório funciona como um ambiente de estudos prático para explorar deploys, infraestrutura, escalabilidade, observabilidade básica e gerenciamento de aplicações conteinerizadas.
 
 ---
 
-# 📚 Projetos da trilha
+# 📚 Conteúdos estudados na trilha
 
-## 🐳 Docker: Criando e Gerenciando Containers
+## 🐳 Docker e Containers
 
-Projeto focado nos fundamentos do Docker.
+Estudos focados nos fundamentos de conteinerização utilizando Docker.
 
-Durante os estudos foram praticados conceitos como:
+### Conceitos praticados
 
-- criação de containers
-- build de imagens
-- persistência com volumes
+- criação de imagens Docker
+- execução e gerenciamento de containers
+- Dockerfile
+- build de aplicações
+- persistência de dados com volumes
 - redes Docker
+- variáveis de ambiente
 - Docker Compose
-- gerenciamento de múltiplos containers
-
-Também foram realizados experimentos com comandos básicos do Docker para entender o ciclo de vida dos containers e a criação de ambientes isolados.
-
----
-
-## 🚀 Integração Contínua com GitHub Actions
-
-Projeto desenvolvido utilizando Go, PostgreSQL, Docker Compose e GitHub Actions.
-
-O foco foi criar uma pipeline simples de CI capaz de:
-
-- realizar build da aplicação
-- executar lint
-- subir banco PostgreSQL automaticamente
-- executar testes automatizados
-- utilizar GitHub Secrets
-- gerar artifacts da aplicação compilada
-
-O projeto serviu como introdução prática aos conceitos de integração contínua (CI/CD) e automação de validações em aplicações backend.
+- comunicação entre containers
+- isolamento de ambientes
+- gerenciamento do ciclo de vida dos containers
 
 ---
 
-## ☸️ Kubernetes: Pods, Services e ConfigMaps
+## 🚀 CI/CD com GitHub Actions
 
-Laboratório prático com Kubernetes para estudo dos principais recursos da plataforma.
+Projeto de integração contínua utilizando GitHub Actions, Go e PostgreSQL.
 
-Durante o curso foram explorados conceitos como:
+### Conceitos praticados
 
-- Pods
+- pipelines de CI
+- automação de build
+- execução de testes automatizados
+- lint de código
+- integração com PostgreSQL
+- Docker Compose em pipelines
+- GitHub Secrets
+- geração de artifacts
+- validação automática de aplicações
+- esteiras de integração contínua
+
+---
+
+# ☸️ Kubernetes
+
+Laboratórios práticos utilizando Kubernetes para orquestração de aplicações conteinerizadas.
+
+Durante os estudos foram praticados desde recursos básicos até conceitos mais avançados de gerenciamento e escalabilidade.
+
+---
+
+## 📦 Fundamentos do Kubernetes
+
+### Conceitos praticados
+
+- arquitetura do Kubernetes
+- cluster Kubernetes
+- gerenciamento de Pods
+- uso do `kubectl`
+- comunicação entre aplicações
 - Services
 - NodePort
 - ClusterIP
 - ConfigMaps
-- comunicação entre aplicações
-- gerenciamento com kubectl
+- gerenciamento de aplicações no cluster
 
-O projeto final simulou uma pequena arquitetura distribuída utilizando múltiplos serviços e configurações dentro de um cluster Kubernetes.
+---
+
+## 🔁 ReplicaSets e Deployments
+
+Estudos voltados para alta disponibilidade e gerenciamento declarativo de aplicações.
+
+### Conceitos praticados
+
+- ReplicaSets
+- Deployments
+- controle de réplicas
+- rollout e atualização de aplicações
+- gerenciamento declarativo
+- escalabilidade horizontal básica
+
+---
+
+## 💾 Volumes e Persistência de Dados
+
+Prática de persistência de dados em aplicações Kubernetes.
+
+### Conceitos praticados
+
+- Volumes
+- PersistentVolume (PV)
+- PersistentVolumeClaim (PVC)
+- Storage Classes
+- provisionamento dinâmico
+- persistência de dados em containers
+
+---
+
+## 🧠 Stateful Applications
+
+Introdução ao gerenciamento de aplicações com estado utilizando Kubernetes.
+
+### Conceitos praticados
+
+- StatefulSets
+- identidade persistente de Pods
+- armazenamento persistente
+- aplicações stateful
+- gerenciamento de banco de dados e serviços persistentes
+
+---
+
+## ❤️ Health Checks e Monitoramento Básico
+
+Configuração de verificações automáticas de saúde das aplicações.
+
+### Conceitos praticados
+
+- Liveness Probes
+- Readiness Probes
+- validação de disponibilidade
+- reinicialização automática de containers
+- controle de tráfego para Pods saudáveis
+
+---
+
+## 📈 Escalabilidade com HPA
+
+Estudos sobre escalabilidade automática no Kubernetes.
+
+### Conceitos praticados
+
+- Horizontal Pod Autoscaler (HPA)
+- escalabilidade automática baseada em CPU
+- métricas de utilização
+- requests e limits
+- aumento e redução automática de Pods
 
 ---
 
@@ -75,18 +161,22 @@ O projeto final simulou uma pequena arquitetura distribuída utilizando múltipl
 
 # 🎯 Objetivo da trilha
 
-O principal objetivo desses projetos foi praticar conceitos fundamentais de DevOps e infraestrutura moderna, incluindo:
+O principal objetivo dos estudos foi desenvolver conhecimentos práticos em:
 
 - conteinerização de aplicações
-- automação de pipelines
 - integração contínua
+- automação de pipelines
 - orquestração de containers
-- gerenciamento de serviços
+- gerenciamento de infraestrutura
+- deploy de aplicações
+- persistência de dados
+- escalabilidade
+- serviços distribuídos
+- práticas DevOps
 - ambientes reproduzíveis
-- deploy e comunicação entre aplicações
 
 ---
 
 # 📌 Observação
 
-Todos os projetos foram desenvolvidos para fins de estudo e aprendizado prático durante os cursos da Alura 🚀
+Todos os projetos deste repositório foram desenvolvidos com foco em aprendizado prático, experimentação e evolução nos estudos de DevOps, containers, Kubernetes e CI/CD 🚀
