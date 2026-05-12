@@ -1,27 +1,59 @@
-# Kubernetes: Pods, Services e ConfigMaps ☸️
+# Kubernetes: Pods, Services, ConfigMaps, Deployments e Autoscaling ☸️
 
-Projeto desenvolvido durante o curso **“Kubernetes: Pods, Services e ConfigMaps”** da alura.  
-Neste repositório estão os exemplos e exercícios práticos utilizados para entender a arquitetura do Kubernetes, gerenciamento de Pods, exposição de aplicações com Services e configuração utilizando ConfigMaps.
+Projeto desenvolvido durante a trilha de "Docker e Kubernetes" da Alura.
 
-O projeto funciona como um pequeno laboratório Kubernetes para praticar os principais recursos básicos da plataforma ☁️
+Este repositório reúne diversos laboratórios práticos utilizados para estudar desde os fundamentos do Kubernetes até recursos mais avançados como:
+
+- Deployments
+- ReplicaSets
+- StatefulSets
+- Persistent Volumes
+- Horizontal Pod Autoscaler (HPA)
+- Liveness e Readiness Probes
+
+O projeto funciona como uma trilha prática de evolução no Kubernetes 🚀
 
 ---
 
 # 📚 Conteúdos estudados
 
-Durante o curso foram abordados os seguintes conceitos:
+## Fundamentos Kubernetes
 
 - Arquitetura do Kubernetes
-- Funcionamento do cluster Kubernetes
-- Gerenciamento de containers com Kubernetes
-- Criação e gerenciamento de Pods
-- Uso do `kubectl`
-- Exposição de aplicações com Services
-- Services do tipo:
-  - `NodePort`
-  - `ClusterIP`
-- Configuração de variáveis de ambiente com ConfigMaps
-- Comunicação entre Pods e Services
+- Funcionamento do cluster
+- Pods
+- Services
+- ConfigMaps
+- Comunicação entre aplicações
+- kubectl
+
+## Exposição de aplicações
+
+- Services `NodePort`
+- Services `ClusterIP`
+
+## Gerenciamento de aplicações
+
+- ReplicaSets
+- Deployments
+- Estratégias de atualização
+
+## Persistência de dados
+
+- Volumes
+- PersistentVolumeClaim (PVC)
+- Storage Classes
+- Provisionamento dinâmico de volumes
+
+## Alta disponibilidade e escalabilidade
+
+- StatefulSets
+- Horizontal Pod Autoscaler (HPA)
+
+## Monitoramento de saúde da aplicação
+
+- Liveness Probe
+- Readiness Probe
 
 ---
 
@@ -32,8 +64,10 @@ Durante o curso foram abordados os seguintes conceitos:
 ├── exemplo-svc
 │   ├── portal-noticias.yml
 │   └── svc-portal-noticias.yml
+├── nginx-deployment.yml
 ├── pod-1.yml
 ├── pod-2.yml
+├── portal-noticias-replicaset.yaml
 ├── portal-noticias.yml
 ├── primeiro-pod.yml
 ├── project-k8s-alura
@@ -46,24 +80,33 @@ Durante o curso foram abordados os seguintes conceitos:
 │   ├── svc-db-noticias.yaml
 │   ├── svc-portal-noticias.yml
 │   └── svc-sistema-noticias.yml
+├── refactor-project-k8s
+│   ├── db-noticias-deployment.yml
+│   ├── imagens-pvc.yml
+│   ├── pod-volume.yml
+│   ├── portal-noticias-deployment.yml
+│   ├── portal-noticias-hpa.yml
+│   ├── sessao-pvc.yml
+│   ├── sistema-noticias-deployment.yml
+│   └── sistema-noticias-statefulset.yml
 ├── svc-pod-1.yml
 └── svc-pod-2.yml
 ```
 
 ---
 
-# 🧩 Organização dos arquivos
+# 🧪 Laboratórios do projeto
 
-## 📦 Pods básicos
+# 📦 Pods básicos
 
-Arquivos utilizados para aprender a criação e gerenciamento de Pods:
+Arquivos utilizados para aprender os fundamentos do Kubernetes:
 
 - `primeiro-pod.yml`
 - `pod-1.yml`
 - `pod-2.yml`
 - `portal-noticias.yml`
 
-Exemplos de comandos utilizados:
+Exemplos:
 
 ```bash
 kubectl apply -f primeiro-pod.yml
@@ -71,92 +114,164 @@ kubectl apply -f primeiro-pod.yml
 kubectl get pods
 
 kubectl describe pod nome-do-pod
-
-kubectl delete pod nome-do-pod
 ```
 
 ---
 
 # 🌐 Services
 
-## Exemplo simples de Service
+## NodePort
 
-A pasta `exemplo-svc` contém um exemplo básico de exposição de aplicação utilizando `NodePort`.
+Exposição externa das aplicações.
 
 Arquivos:
 
-- `portal-noticias.yml`
-- `svc-portal-noticias.yml`
-
-Exemplo de aplicação:
-
-```bash
-kubectl apply -f portal-noticias.yml
-kubectl apply -f svc-portal-noticias.yml
-```
-
----
-
-## Services dos Pods
-
-Os arquivos:
-
 - `svc-pod-1.yml`
 - `svc-pod-2.yml`
-
-são responsáveis por expor os Pods:
-
-- `pod-1.yml`
-- `pod-2.yml`
-
-utilizando Services no Kubernetes.
+- `svc-portal-noticias.yml`
 
 ---
 
-# 🚀 Projeto final
+## ClusterIP
 
-A pasta `project-k8s-alura` representa o projeto final do curso.
+Comunicação interna entre aplicações dentro do cluster.
 
-Nela foi criada uma pequena arquitetura com múltiplos Pods, Services e ConfigMaps.
+Arquivo:
 
-## Estrutura do projeto final
+- `svc-db-noticias.yaml`
 
-### Aplicações
+---
 
-- Portal de notícias
-- Sistema de notícias
-- Banco de dados de notícias
+# ⚙️ ConfigMaps
 
-### ConfigMaps
+Utilizados para centralizar variáveis de ambiente e configurações.
 
-Arquivos responsáveis pelas variáveis de ambiente/configurações:
+Arquivos:
 
 - `db-configmap.yml`
 - `portal-configmap.yml`
 - `sistema-configmap.yml`
 
-### Services
+---
 
-#### NodePort
+# 🚀 Projeto intermediário
 
-Utilizados para expor aplicações externamente:
+A pasta `project-k8s-alura` contém uma arquitetura simples baseada em:
 
-- `svc-portal-noticias.yml`
-- `svc-sistema-noticias.yml`
+- Portal de notícias
+- Sistema de notícias
+- Banco de dados
 
-#### ClusterIP
+Recursos utilizados:
 
-Utilizado para comunicação interna do banco de dados:
-
-- `svc-db-noticias.yaml`
-
-O Pod do banco (`db-noticias.yaml`) utiliza um Service `ClusterIP`, permitindo acesso apenas dentro do cluster Kubernetes 🔒
+- Pods
+- Services
+- ConfigMaps
 
 ---
 
-# ⚙️ Principais comandos kubectl utilizados
+# 🏗️ Refatoração avançada Kubernetes
 
-## Criar recursos
+A pasta `refactor-project-k8s` contém a evolução do projeto utilizando recursos mais avançados do Kubernetes.
+
+## Recursos implementados
+
+### Deployments
+
+Gerenciamento declarativo das aplicações.
+
+Arquivos:
+
+- `portal-noticias-deployment.yml`
+- `sistema-noticias-deployment.yml`
+- `db-noticias-deployment.yml`
+
+---
+
+### ReplicaSets
+
+Controle de réplicas e alta disponibilidade.
+
+Arquivo:
+
+- `portal-noticias-replicaset.yaml`
+
+---
+
+### StatefulSet
+
+Gerenciamento de aplicações stateful com identidade persistente.
+
+Arquivo:
+
+- `sistema-noticias-statefulset.yml`
+
+---
+
+### Volumes e Persistência
+
+Persistência de dados utilizando PVCs.
+
+Arquivos:
+
+- `imagens-pvc.yml`
+- `sessao-pvc.yml`
+- `pod-volume.yml`
+
+Conceitos praticados:
+
+- PersistentVolumeClaim
+- StorageClass
+- Provisionamento dinâmico
+
+---
+
+### Health Checks
+
+Monitoramento da saúde da aplicação utilizando:
+
+- Liveness Probe
+- Readiness Probe
+
+Exemplo:
+
+```yaml
+livenessProbe:
+  httpGet:
+    path: /
+    port: 80
+
+readinessProbe:
+  httpGet:
+    path: /
+    port: 80
+```
+
+---
+
+### Autoscaling
+
+Escalabilidade automática utilizando Horizontal Pod Autoscaler.
+
+Arquivo:
+
+- `portal-noticias-hpa.yml`
+
+Exemplo:
+
+```bash
+kubectl get hpa
+
+kubectl top pods
+
+kubectl describe hpa portal-noticias-hpa
+```
+
+---
+
+# ⚙️ Principais comandos utilizados
+
+## Aplicar recursos
 
 ```bash
 kubectl apply -f arquivo.yml
@@ -174,13 +289,33 @@ kubectl get pods
 kubectl get svc
 ```
 
-## Descrever recurso
+## Listar Deployments
 
 ```bash
-kubectl describe pod nome-do-pod
+kubectl get deployments
 ```
 
-## Remover recurso
+## Listar StatefulSets
+
+```bash
+kubectl get statefulsets
+```
+
+## Listar HPA
+
+```bash
+kubectl get hpa
+```
+
+## Ver consumo de recursos
+
+```bash
+kubectl top pods
+
+kubectl top nodes
+```
+
+## Remover recursos
 
 ```bash
 kubectl delete -f arquivo.yml
@@ -191,21 +326,16 @@ kubectl delete -f arquivo.yml
 # 🛠️ Tecnologias utilizadas
 
 - Kubernetes
-- kubectl
 - Docker
+- kubectl
+- Minikube
 - YAML
 
 ---
 
 # 🎯 Objetivo do projeto
 
-Este projeto teve como foco praticar os fundamentos do Kubernetes, principalmente:
-
-- Criação de Pods
-- Exposição de aplicações com Services
-- Comunicação entre containers
-- Configuração de aplicações com ConfigMaps
-- Gerenciamento básico de aplicações Kubernetes
+Este projeto teve como foco praticar na prática os principais recursos do Kubernetes, desde os fundamentos até funcionalidades avançadas de escalabilidade e persistência.
 
 ---
 
@@ -214,14 +344,21 @@ Este projeto teve como foco praticar os fundamentos do Kubernetes, principalment
 | Recurso | Objetivo |
 |---|---|
 | Pod | Executar containers |
-| Service | Expor aplicações e permitir comunicação |
+| Service | Comunicação entre aplicações |
 | NodePort | Exposição externa |
 | ClusterIP | Comunicação interna |
-| ConfigMap | Configurações e variáveis de ambiente |
+| ConfigMap | Configuração de aplicações |
+| ReplicaSet | Controle de réplicas |
+| Deployment | Gerenciamento declarativo |
+| StatefulSet | Aplicações stateful |
+| PVC | Persistência de dados |
+| HPA | Escalabilidade automática |
+| Liveness Probe | Verificar saúde da aplicação |
+| Readiness Probe | Verificar disponibilidade |
 | kubectl | Gerenciamento do cluster |
 
 ---
 
 # 📌 Observação
 
-Projeto desenvolvido para fins de estudo e aprendizado sobre Kubernetes ☸️
+Projeto desenvolvido para fins de estudo, prática e aprofundamento em Kubernetes ☸️
